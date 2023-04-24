@@ -81,11 +81,13 @@
             </h5>
             <p class="text-success" th:text="${vuelo.aerolinea.nombre} + ' - ' + ${vuelo.aerolinea.codigo}"><b>Nombre - code</b> </p>
             <p th:text="${vuelo.descripcion}">Description</p>
-            <a class="btn btn-success btn-lg btn-block" th:href="@{'/comprar?vuelo='+${vuelo.idvuelo}+'&user='+${user.id}}">Comprar</a>
+            <a  type="button" class="btn btn-success btn-lg btn-block"
+                th:href="@{'/comprar?vuelo='+${vuelo.idvuelo}+'&user='+${user.id}}">Comprar</a>
           </div>
         </div>
       </div>
     </div>
+
 
   </div>
 

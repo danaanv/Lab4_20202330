@@ -57,19 +57,19 @@ public class Controller {
     }
 
     @GetMapping("/comprar")
-    public String comprar(Integer vuelo, Integer user,  RedirectAttributes attr){
+    public String comprar(Integer vuelo, Integer user,  RedirectAttributes attr, Model model){
 
         Reserva reserva = new Reserva();
         Vuelo vuelo1 = vueloRepository.findById(vuelo).get();
         User user1 = userRepository.findById(user).get();
 
         List<Reserva> reservaList = reservaRepository.findAll();
-        int i = 0;
+        int id = 0;
         for (Reserva reserva1 : reservaList){
-            i++;
+            id++;
         }
 
-        reserva.setIdreserva(i);
+        reserva.setIdreserva(id);
         reserva.setPrecio_total(vuelo1.getPrecio());
         reserva.setFecha_reserva(LocalDateTime.now().toString());
         reserva.setEstado_pago("procesado");
@@ -77,6 +77,9 @@ public class Controller {
         reserva.setVuelo(vuelo1);
         reservaRepository.save(reserva);
 
+        List<User> userList = userRepository.findAll();
+        model.addAttribute("listaVuelos", vueloRepository.findAll());
+        model.addAttribute("user", user1);
         return "homePage";
     }
 
