@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -62,7 +62,6 @@
     </div>
 
 
-
     <div class="card text-center mt-2 border-white">
       <div class="card-body">
         <div class="row">
@@ -74,17 +73,15 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-6 mt-2 ml-2 mb-4">
+      <div class="col-sm-6 mt-2 ml-2 mb-4" th:each="vuelo : ${listaVuelos}">
         <div class="card text-center border-white">
           <div class="card-body">
-            <h5 class="card-title mt-3">Lima - Bogota <span class="text-danger"><b>($120.00)</b></span></h5>
-            <p class="text-success"><b>Star Peru - 2I</b> </p>
-            <p>Definitivamente el turismo en Bogotá en más que Monserrate y la Candelaria, hay muchas excursiones por
-              senderos
-              mágicos que puedes realizar. Estas actividades también se conocen como: senderismo, excursionismo,
-              caminata, montañismo,
-              hiking o trekking.</p>
-            <button class="btn btn-success btn-lg btn-block">Comprar</button>
+            <h5 class="card-title mt-3" th:text="${vuelo.origen} + ' - ' + ${vuelo.destino}">Origen - Destino
+              <span class="text-danger" th:text="${vuelo.precio}"><b>Precio</b></span>
+            </h5>
+            <p class="text-success" th:text="${vuelo.aerolinea.nombre} + ' - ' + ${vuelo.aerolinea.codigo}"><b>Nombre - code</b> </p>
+            <p th:text="${vuelo.descripcion}">Description</p>
+            <a class="btn btn-success btn-lg btn-block" th:href="@{'/comprar?vuelo='+${vuelo.idvuelo}+'&user='+${user.id}}">Comprar</a>
           </div>
         </div>
       </div>

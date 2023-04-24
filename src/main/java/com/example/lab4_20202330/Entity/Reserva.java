@@ -13,18 +13,23 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idreserva",nullable = true)
-    private String idreserva;
+    private Integer idreserva;
 
     @Column(name = "fecha_reserva",nullable = false)
-    private Double fecha_reserva;
+    private String fecha_reserva;
 
     @Column(name = "estado_pago",nullable = false)
     private String estado_pago;
 
-    @Column(name = "user_iduser",nullable = false)
-    private String user_id;
+    @Column(name = "precio_total", nullable = false)
+    private Integer precio_total;
 
-    @Column(name = "vuelo_idvuelo",nullable = false)
-    private String vuelo_id;
+    @ManyToOne
+    @JoinColumn(name = "user_iduser")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "vuelo_idvuelo")
+    private Vuelo vuelo;
 
 }

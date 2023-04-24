@@ -16,7 +16,7 @@ public class Aerolinea {
     private String idaerolinea;
 
     @Column(name = "nombre",nullable = false)
-    private Double nombre;
+    private String nombre;
 
     @Column(name = "codigo",nullable = false)
     private String codigo;

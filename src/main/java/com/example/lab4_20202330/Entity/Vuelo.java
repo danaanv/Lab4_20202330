@@ -1,6 +1,7 @@
 package com.example.lab4_20202330.Entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,10 +14,10 @@ public class Vuelo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idvuelo",nullable = false)
-    private String idvuelo;
+    private Integer idvuelo;
 
     @Column(name = "origen",nullable = false)
-    private Double origen;
+    private String origen;
 
     @Column(name = "destino",nullable = false)
     private String destino;
@@ -37,9 +38,10 @@ public class Vuelo {
     private Integer asientos_disponibles;
 
     @Column(name = "descripcion",nullable = false)
-    private Integer descripcion;
+    private String descripcion;
 
-    @Column(name = "aerolinea_idaerolinea",nullable = false)
-    private Integer idaerolinea;
+    @ManyToOne
+    @JoinColumn(name = "aerolinea_idaerolinea")
+    private Aerolinea aerolinea;
 
 }
